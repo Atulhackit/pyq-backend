@@ -1,0 +1,17 @@
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: pyq_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: pyq_admin
+      POSTGRES_PASSWORD: pyq_local_pass
+      POSTGRES_DB: pyq_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pyq_pg_data:/var/lib/postgresql/data
+
+volumes:
+  pyq_pg_data:
