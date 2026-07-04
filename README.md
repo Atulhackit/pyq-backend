@@ -124,17 +124,25 @@ pyq-backend/
 
 ## Current Status / Progress Log
 
+## Current Status / Progress Log
+
 - [x] Decided on full architecture and stack
 - [x] Backend project initialized (`npm init`, TypeScript configured)
 - [x] Folder structure created (config, routes, controllers, models, middleware, types)
 - [x] `.gitignore` and `.env` / `.env.example` set up
-- [ ] Docker installation in progress (for local PostgreSQL)
-- [ ] `docker-compose.yml` for local Postgres — not yet created
-- [ ] Database connection code — not yet written
-- [ ] Database schema/migrations — not yet written
-- [ ] First API routes (Category/Exam/Paper CRUD) — not yet built
+- [x] Docker installed and configured
+- [x] `docker-compose.yml` for local PostgreSQL created
+- [x] Database connection code (`src/config/db.ts`) with connection pooling
+- [x] `src/server.ts` with Express, CORS, middleware, health check endpoint
+- [x] Database schema/migrations (`src/migrations/001_create_tables.sql`)
+- [x] Migration runner script (`src/config/migrate.ts`)
+- [ ] TypeScript interfaces (`src/types/`) — next step
+- [ ] Model files (category, exam, paper DB queries) — not yet built
+- [ ] Route files (`src/routes/`) — not yet built
+- [ ] Controller files (`src/controllers/`) — not yet built
+- [ ] JWT auth middleware for admin — not yet built
 - [ ] S3 presigned URL integration — not yet built
-- [ ] Admin portal — not started
+- [ ] Admin portal (React + Vite) — not started
 - [ ] User portal (Next.js) — not started
 
 ---
@@ -150,5 +158,17 @@ pyq-backend/
 
 ## How to Resume Work With Claude
 
+If starting a new chat session, share this README and say:
+> "This is my project, please read the README and continue 
+> from where I left off, following the same teaching style 
+> and architecture decisions."
+
+### What to tell the next session:
+- Stack is fixed — do not suggest changing anything
+- Teach like a senior dev to an intern — explain the why, 
+  not just the what
+- Make me write code myself first before correcting me
+- Next step is: TypeScript interfaces in src/types/
+- 
 If starting a new chat session, share this README and say:
 > "This is my project, please read the README and continue from where I left off, following the same teaching style and architecture decisions."
