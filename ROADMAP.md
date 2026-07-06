@@ -1,31 +1,14 @@
 # PYQ Backend — Build Roadmap & Progress Tracker
-I am building a full stack project and I want you to act as a 
-senior software engineer/architect who is teaching me like an 
-intern. Treat me as someone who is confident in React but new 
-to backend (Node.js). Explain every concept step by step, tell 
-me the why behind every decision, not just the what. Correct my 
-mistakes like a senior dev doing a PR review — don't just give 
-me the answer, make me think first.
-
-Here is my project README with full context of what we are 
-building, the stack decisions, architecture, and current 
-progress:
-
-[PASTE YOUR README.md CONTENTS HERE]
-
-Please read it fully and continue from where I left off. 
-Follow the same architecture decisions already made — do not 
-suggest changing the stack. The next step we need to do is:
-
-[DESCRIBE WHAT YOU JUST FINISHED AND WHAT'S NEXT]
 
 This is our learning plan. We build in **phases**, each phase produces something you can run and test, and each teaches a specific backend concept. Check items off as we go so you can always see your progress.
 
 Legend: `[ ]` todo · `[~]` in progress · `[x]` done
 
+> **Current position:** Phase 1 done ✅ — next up is a seed script, then Phase 2 (Categories, full stack).
+
 ---
 
-## Phase 0 — Foundations ✅ (mostly done)
+## Phase 0 — Foundations ✅
 **Goal:** a running server that can talk to a database.
 **Concepts:** project setup, TypeScript compilation, environment variables, Docker for local infra.
 
@@ -33,21 +16,27 @@ Legend: `[ ]` todo · `[~]` in progress · `[x]` done
 - [x] Express server with `cors` + `express.json()` (`src/server.ts`)
 - [x] PostgreSQL connection pool (`src/config/db.ts`)
 - [x] `/health` route that pings the DB
-- [x] `docker-compose.yml` for local Postgres
-- [ ] Fix bug: `const PORT = process.env` → should be `process.env.PORT`
-- [ ] Verify: `docker compose up -d` then `npm run dev`, open `/health` → `{ status: "ok" }`
+- [x] `docker-compose.yml` for local Postgres (host port **5433** → container 5432)
+- [x] Fixed bug: `PORT` now reads `process.env.PORT || 5000`
+- [ ] Known issue to revisit: `tsc` build fails due to `verbatimModuleSyntax` + `"type": "commonjs"` mismatch (works fine under `ts-node-dev`; fix before Phase 7 build/deploy)
 
 ---
 
-## Phase 1 — Database Layer
+## Phase 1 — Database Layer ✅
 **Goal:** turn our schema into real tables, repeatably.
 **Concepts:** SQL DDL, primary/foreign keys, migrations, seeding, why we don't create tables by hand in production.
 
-- [~] Write schema (`src/migrations/001_create_tables.sql`) — started, needs fixes
-- [ ] Fix SQL: add `;` between statements, add `created_at` where useful
-- [ ] Decide how to RUN migrations (start simple: a small `db:migrate` script)
-- [ ] Run migration against Docker Postgres and confirm tables exist
+- [x] Write schema (`src/migrations/001_create_tables.sql`) with correct commas, FKs, unique slugs
+- [x] Write a migration runner (`src/config/migrate.ts`) + `npm run migrate`
+- [x] Run migration against Docker Postgres and confirm tables exist (`\dt`)
 - [ ] Add a seed script with a few sample categories/exams/papers to test against
+
+### Debugging lessons learned (Phase 1 war stories)
+- Node was v10 (EOL) → upgraded to v20 LTS. Libraries declare required Node "engines".
+- `.env` didn't exist (it's gitignored) → must be created from `.env.example`.
+- Postgres bakes credentials on **first volume init**; `docker compose down -v` resets them.
+- A **native Windows Postgres** was squatting on port 5432 → moved Docker to host port **5433** to avoid the conflict.
+- Key skill: `psql` via socket uses `trust` (no password); TCP uses real password auth — they test different things.
 
 ---
 
@@ -113,6 +102,7 @@ Legend: `[ ]` todo · `[~]` in progress · `[x]` done
 **Goal:** the things that make it resume-worthy.
 **Concepts:** config validation, logging, pagination, slugs, deployment.
 
+- [ ] Fix the `tsc` build (module/verbatimModuleSyntax config) so `npm run build` works
 - [ ] Validate env vars on startup (fail fast if missing)
 - [ ] Request logging (e.g. `morgan`)
 - [ ] Pagination on list endpoints
@@ -128,6 +118,6 @@ Legend: `[ ]` todo · `[~]` in progress · `[x]` done
 ---
 
 ## How We Work Together
-- We go **one phase at a time**. I explain the concept first, then we build it, then you test it.
+- We go **one phase at a time**. I explain the concept first, you write the code, then I review it.
 - I'll treat you as a frontend dev learning backend — I'll relate new ideas to things you already know from React when it helps.
 - You drive the pace. Say "next" to continue, or ask "why" any time you want a deeper explanation.

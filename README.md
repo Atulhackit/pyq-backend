@@ -124,8 +124,6 @@ pyq-backend/
 
 ## Current Status / Progress Log
 
-## Current Status / Progress Log
-
 - [x] Decided on full architecture and stack
 - [x] Backend project initialized (`npm init`, TypeScript configured)
 - [x] Folder structure created (config, routes, controllers, models, middleware, types)
@@ -168,7 +166,6 @@ If starting a new chat session, share this README and say:
 - Teach like a senior dev to an intern — explain the why, 
   not just the what
 - Make me write code myself first before correcting me
-- Next step is: TypeScript interfaces in src/types/
-- 
-If starting a new chat session, share this README and say:
-> "This is my project, please read the README and continue from where I left off, following the same teaching style and architecture decisions."
+- Next step is: TypeScript interfaces in `src/types/` (Phase 2)
+
+See `ROADMAP.md` for the full phase-by-phase build plan and current progress.
