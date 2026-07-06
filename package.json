@@ -4,15 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-  "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
-  "build": "tsc",
-  "migrate": "ts-node --transpile-only src/config/migrate.ts",
-  "start": "node dist/server.js"
-},
+    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "build": "tsc",
+    "migrate": "ts-node --transpile-only src/config/migrate.ts",
+    "start": "node dist/server.js"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "dependencies": {
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
@@ -23,5 +23,8 @@
     "pg": "^8.22.0",
     "ts-node-dev": "^2.0.0",
     "typescript": "^6.0.3"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.20.0"
   }
 }

@@ -32,15 +32,34 @@
 
 ### **WEEK 1: Foundation & CI/CD Setup**
 
-#### **Day 1 - Monday, July 7, 2026** ⬜
-- **Status:** Not Started
+#### **Day 1 - Monday, July 7, 2026** ✅
+- **Status:** Complete
 - **Time Budget:** 1.5 hours
 - **Tasks:**
-  - [ ] Task 1.1: Fix TypeScript build configuration
-  - [ ] Get `npm run build` working
-  - [ ] Test: Run `node dist/server.js` successfully
-- **Goal:** TypeScript compilation works perfectly
+  - [x] Task 1.1: Fix TypeScript build configuration
+  - [x] Get `npm run build` working
+  - [x] Test: Run `node dist/server.js` successfully
+- **Goal:** ✅ TypeScript compilation works perfectly
 - **Notes:**
+got two error while running - 'num run build'command
+1. @type/pg was not found - for that installed @type/pg
+2. getting and type error for poo.on(err:Error) fixed.
+3. also import were redefined 
+4. package.json file updated. 
+
+What I learned:
+
+package.json "type" field controls Node.js module system
+ESM requires .js extensions in imports (TypeScript compiles to .js)
+@types/ packages provide TypeScript definitions for JavaScript libraries
+TypeScript strict mode requires explicit types
+npm run build compiles .ts → .js into dist/ folder
+npm start runs the compiled code
+Wins:
+
+Server successfully builds and runs!
+Health endpoint works at http://localhost:5000/health
+Fixed a real production build issue
   ```
   [Add your notes here after completing]
   

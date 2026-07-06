@@ -1,7 +1,7 @@
 import express from 'express'
 import cors from 'cors'
 import dotenv from 'dotenv'
-import pool from './config/db'
+import pool from './config/db.js';  // Note the .js even though the file is db.ts
 
 dotenv.config()
 
